@@ -1,0 +1,60 @@
+name: Generate documentation
+
+on:
+  push:
+    branches:
+      - 'release/[0-9]+\.[0-9]+'
+
+jobs:
+  build_docs:
+    name: Generate documentation
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout source files
+        uses: actions/checkout@v2
+
+      - name: Set up Python 3.13
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.13
+          architecture: x64
+          cache: 'pip'
+          cache-dependency-path: 'requirements.txt'
+
+      - name: Install Python dependencies
+        run: python3 -m pip install -r ./requirements.txt
+
+      - name: Configure Git user
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+
+      - name: Extract branch name
+        shell: bash
+        run: |
+          echo "release=${GITHUB_REF#refs/heads/release/}" >> $GITHUB_OUTPUT
+          echo "branch=${GITHUB_REF#refs/heads/}" >> $GITHUB_OUTPUT
+        id: extract_branch
+
+      - name: Extract latest branch name
+        shell: bash
+        run: | 
+          git fetch --all
+          LATEST_RELEASE=$(git branch -r | sed -E "s/^ *(.*?) *$/\1/g" | grep -E "^origin/" | sort -Vr | head -n 1)
+          echo "release=${LATEST_RELEASE#origin/release/}" >> $GITHUB_OUTPUT
+        id: extract_latest_branch
+
+      - name: Deploy with mike 🚀
+        run: |
+          STABLE_VERSION=${{ vars.STABLE_VERSION }}
+          export GIT_BRANCH="${{ steps.extract_branch.outputs.branch }}"
+          if [[ "${{ steps.extract_branch.outputs.release }}" = "${{ steps.extract_latest_branch.outputs.release }}" ]]; then
+            mike deploy --push --update-aliases ${{ steps.extract_branch.outputs.release }} latest
+          else
+            mike deploy --push ${{ steps.extract_branch.outputs.release }}
+          fi
+          if [[ "${{ steps.extract_branch.outputs.release }}" = "$STABLE_VERSION" ]]; then
+            mike alias --push ${{ steps.extract_branch.outputs.release }} stable
+          fi
+          mike set-default --push stable
