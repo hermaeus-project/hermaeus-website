@@ -1,0 +1,132 @@
+site_name: Hermaeus
+site_url: https://hermaeus-project.github.io/hermaeus-website/
+repo_url: https://github.com/hermaeus-project/hermaeus-website
+repo_name: hermaeus-project/hermaeus-website
+edit_uri: edit/main/doc/docs/
+
+copyright: >
+  Copyright &copy; 2024-2025 Hermaeus Project – <a href="#__consent">Change cookie settings</a>
+
+theme:
+  name: material
+  custom_dir: overrides
+  language: en
+  #  logo: _assets/logo.svg
+  #  favicon: _assets/favicon.svg
+  palette:
+    primary: green
+
+  features:
+    - navigation.instant
+    - navigation.instant.progress
+    - navigation.tracking
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.sections
+    - navigation.expand
+    - navigation.path
+    - navigation.prune
+    - navigation.indexes
+    - navigation.top
+    - search.highlight
+    - search.suggest
+    - search.share
+    - toc.follow
+    #    - toc.integrate
+    #    - header.autohide
+    - announce.dismiss
+    - content.code.annotate
+    - content.code.copy
+    - content.footnote.tooltips
+    - content.tooltips
+    - content.action.edit
+    - content.action.view
+
+extra_css:
+  - _assets/css/extra.css
+  -
+extra_javascript:
+  - path: _assets/javascript/register-mermaid-icons.js
+    type: module
+
+extra:
+  generator: false
+
+  consent: # https://squidfunk.github.io/mkdocs-material/setup/ensuring-data-privacy/#cookie-consent
+    title: Cookie consent
+    description: >-
+      We use cookies to recognize your repeated visits and preferences, as well
+      as to measure the effectiveness of our documentation and whether users
+      find what they're searching for. With your consent, you're helping us to
+      make our documentation better.
+    actions:
+      - accept
+      - reject
+
+plugins:
+  - tags
+  - search
+  - mermaid2: # https://mkdocs-mermaid2.readthedocs.io/en/latest/
+      version: 11.4.0 # Note: to change in doc/_assets/javascript/register-mermaid-icons.js as well
+      arguments:
+        securityLevel: "loose"
+        startOnLoad: false
+
+  - git-revision-date-localized: # https://squidfunk.github.io/mkdocs-material/setup/adding-a-git-repository/
+      enable_creation_date: false
+
+  - git-committers: # https://squidfunk.github.io/mkdocs-material/setup/adding-a-git-repository/
+      enabled: !ENV [CI, false]
+      repository: hermaeus-project/hermaeus-operator
+      branch: !ENV [GIT_BRANCH, main]
+
+  - git-authors # https://squidfunk.github.io/mkdocs-material/setup/adding-a-git-repository/
+  - mkdocs-nav-weight: # https://github.com/shu307/mkdocs-nav-weight/tree/main
+      section_renamed: true
+      index_weight: -10
+
+markdown_extensions:
+  - attr_list
+  - abbr
+  - md_in_html
+  - footnotes
+  - def_list
+  - markdown.extensions.attr_list
+  - pymdownx.blocks.admonition
+  - pymdownx.blocks.definition
+  - pymdownx.blocks.details
+  - pymdownx.betterem
+  - pymdownx.keys
+  - pymdownx.magiclink
+  - pymdownx.progressbar
+  - pymdownx.smartsymbols
+
+  - toc:
+      title: On this page
+      permalink: true
+
+  - pymdownx.snippets:
+      auto_append:
+        - includes/abbreviations.md
+
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+
+  - pymdownx.tasklist:
+      custom_checkbox: true
+
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: diagram
+          format: !!python/name:mermaid2.fence_mermaid
+
+  - pymdownx.blocks.tab:
+      alternate_style: true
+
+  - pymdownx.blocks.definition
+
+watch:
+  - includes
+  - overrides
