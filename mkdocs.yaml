@@ -66,6 +66,10 @@ extra:
 plugins:
   - tags
   - search
+
+    # https://henrywhitaker3.github.io/mkdocs-material-dark-theme/plugins/awesome-pages/
+  - awesome-pages
+
   - mermaid2: # https://mkdocs-mermaid2.readthedocs.io/en/latest/
       version: 11.4.0 # Note: to change in doc/_assets/javascript/register-mermaid-icons.js as well
       arguments:
