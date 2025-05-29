@@ -8,6 +8,11 @@ serve-dev: .env.auto/touchfile
 serve-full: .env.auto/touchfile
 	./scripts/serve-full.sh
 
+# Build the website locally
+.PHONY: build
+build: .env.auto/touchfile
+	./scripts/build.sh
+
 # Create the python environments and install the dependencies.
 .env.auto/touchfile: requirements.txt
 	./scripts/create-venv.sh
