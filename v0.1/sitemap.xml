@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    <url>
+         <loc>https://hermaeus-project.github.io/hermaeus-website/v0.1/</loc>
+         <lastmod>2025-06-18</lastmod>
+    </url>
+    <url>
+         <loc>https://hermaeus-project.github.io/hermaeus-website/v0.1/concepts/</loc>
+         <lastmod>2025-06-18</lastmod>
+    </url>
+    <url>
+         <loc>https://hermaeus-project.github.io/hermaeus-website/v0.1/use_cases/</loc>
+         <lastmod>2025-06-18</lastmod>
+    </url>
+    <url>
+         <loc>https://hermaeus-project.github.io/hermaeus-website/v0.1/use_cases/architecture/</loc>
+         <lastmod>2025-06-18</lastmod>
+    </url>
+    <url>
+         <loc>https://hermaeus-project.github.io/hermaeus-website/v0.1/use_cases/compilation/</loc>
+         <lastmod>2025-06-18</lastmod>
+    </url>
+    <url>
+         <loc>https://hermaeus-project.github.io/hermaeus-website/v0.1/use_cases/inventories/</loc>
+         <lastmod>2025-06-18</lastmod>
+    </url>
+    <url>
+         <loc>https://hermaeus-project.github.io/hermaeus-website/v0.1/use_cases/planning/</loc>
+         <lastmod>2025-06-18</lastmod>
+    </url>
+</urlset>
