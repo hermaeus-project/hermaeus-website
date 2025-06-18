@@ -4,7 +4,7 @@ die() {
     exit ${2:-1}
 }
 echo "Fetch remote github page content"
-git fetch -f origin/gh-pages || die "Failed to fetch origin/gh-pages"
+git fetch --all || die "Failed to fetch remote branches"
 git checkout origin/gh-pages || die "Failed to checkout origin/gh-pages"
 git pull || die "Failed to pull origin/gh-pages"
 
