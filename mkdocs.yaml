@@ -89,6 +89,8 @@ plugins:
       section_renamed: true
       index_weight: -10
 
+  - mike: {}
+
 markdown_extensions:
   - attr_list
   - abbr
