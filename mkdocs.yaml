@@ -52,6 +52,9 @@ extra_javascript:
 extra:
   generator: false
 
+  version:
+    provider: mike
+
   consent: # https://squidfunk.github.io/mkdocs-material/setup/ensuring-data-privacy/#cookie-consent
     title: Cookie consent
     description: >-
