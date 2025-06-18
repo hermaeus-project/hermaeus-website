@@ -3,7 +3,7 @@ name: Generate documentation
 on:
   push:
     branches:
-      - 'release/[0-9]+\.[0-9]+'
+      - 'release/v[0-9]+\.[0-9]+'
 
 jobs:
   build_docs:
