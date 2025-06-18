@@ -4,9 +4,8 @@ die() {
     exit ${2:-1}
 }
 echo "Fetch remote github page content"
-git fetch origin gh-pages || die "Failed to fetch remote branches"
-git pull origin gh-pages || die "Failed to pull origin/gh-pages"
-git checkout gh-pages || die "Failed to checkout to gh-pages"
+git fetch origin gh-pages:gh-pages || die "Failed to fetch remote branches"
+git pull origin gh-pages
 
 echo "Activate the python environment .env.auto"
 . .env.auto/bin/activate || die "Failed to activate the python environment"
