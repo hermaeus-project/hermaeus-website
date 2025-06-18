@@ -55,6 +55,6 @@ jobs:
             mike deploy --push ${{ steps.extract_branch.outputs.release }}
           fi
           if [[ "${{ steps.extract_branch.outputs.release }}" = "$STABLE_VERSION" ]]; then
-            mike alias --push ${{ steps.extract_branch.outputs.release }} stable
+            mike alias --push --update-aliases ${{ steps.extract_branch.outputs.release }} stable
           fi
           mike set-default --push stable
